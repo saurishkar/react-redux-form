@@ -1,10 +1,7 @@
 {
     "env": {
         "browser": true,
-<<<<<<< HEAD
         "commonjs": true,
-=======
->>>>>>> 794a2def9b220bc88518b3fdfe85f37b600c77a7
         "es6": true
     },
     "extends": "eslint:recommended",
@@ -21,11 +18,7 @@
     "rules": {
         "indent": [
             "error",
-<<<<<<< HEAD
             4
-=======
-            "tab"
->>>>>>> 794a2def9b220bc88518b3fdfe85f37b600c77a7
         ],
         "linebreak-style": [
             "error",
@@ -33,11 +26,7 @@
         ],
         "quotes": [
             "error",
-<<<<<<< HEAD
             "double"
-=======
-            "single"
->>>>>>> 794a2def9b220bc88518b3fdfe85f37b600c77a7
         ],
         "semi": [
             "error",
