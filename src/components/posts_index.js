@@ -7,7 +7,7 @@ export default class PostsIndex extends React.Component {
 
 	render() {
 		return (
-			<div> PostsIndex </div>
+			<div> Posts Index </div>
 			);
 	}
 }
