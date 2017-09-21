@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 
-export default class PostsCreate extends React.Component {
+class PostsCreate extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -34,3 +34,7 @@ export default class PostsCreate extends React.Component {
 		);
 	}
 }
+
+export default reduxForm({
+	form: 'PostsNewForm'
+})(PostsCreate);
