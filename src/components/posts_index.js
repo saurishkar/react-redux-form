@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
 import FetchPosts from '../actions/fetch_posts';
 
@@ -30,7 +31,11 @@ class PostsIndex extends React.Component {
 	render() {
 		// console.log(this.props.posts);
 		return (
-			<div><ul className="list-group">{ this.listPosts() }</ul></div>
+			<div>
+				<div className="text-xs-right"><Link className="btn btn-primary" to="/posts/create/">Add a Post</Link>
+				</div>
+				<ul className="list-group">{ this.listPosts() }</ul>
+			</div>
 		);
 	}
 }
