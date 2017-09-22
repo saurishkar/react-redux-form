@@ -4,3 +4,10 @@
 a{
 	margin-left:10px;
 }
+.post{
+	text-decoration: none;
+	color:inherit;
+}
+.post:hover {
+	text-decoration: none;
+}

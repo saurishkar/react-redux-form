@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import _ from "lodash";
 import { Link } from "react-router-dom";
-
+import { ROOT_URL, API_KEY } from "../actions/posts";
 import { FetchPosts } from "../actions/posts";
 
 class PostsIndex extends React.Component {
@@ -14,12 +14,15 @@ class PostsIndex extends React.Component {
     listPosts() {
         console.log(_.map(this.props.posts));
         return _.map(this.props.posts).map((elem) => {
+            const link = `/posts/show/${elem.id}/`;
             return (
-                <li key={elem.id} className="list-group-item">
-                    {elem.title} <br />
-                    {elem.categories} <br />
-                    {elem.content} <br />
-                </li>
+                <Link to={link} className="post">
+                    <li key={elem.id} className="list-group-item">
+                        {elem.title} <br />
+                        {elem.categories} <br />
+                        {elem.content} <br />
+                    </li>
+                </Link>
             );
         });
     }
