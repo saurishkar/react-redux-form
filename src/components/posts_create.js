@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { Redirect } from "react-router";
+
+import { StorePosts } from "../actions/posts";
 
 class PostsCreate extends React.Component {
 
@@ -26,41 +31,52 @@ class PostsCreate extends React.Component {
     }
 
     onSubmit(values) {
-        console.log(values);
-        this.setState({
-            success: "The Form has been submitted"
+
+        this.props.StorePosts(values, () => {
+            this.props.history.push("/");
         });
+        // console.log("values: ", this.props.posts);
+        
     }
 
     render() {
 
-        const { handleSubmit, submitting, pristine, invalid } = this.props;
-
+        const { handleSubmit } = this.props;
         return (
-            <form className="form-group" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                <Field
-                    label="Title"
-                    name="title"
-                    component={this.renderFormFields} 
-                />
+            <div className="form-container">
+                <form className="form-group" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                    <Field
+                        label="Title"
+                        name="title"
+                        component={this.renderFormFields} 
+                    />
 
-                <Field
-                    label="Categories"
-                    name="categories"
-                    component={this.renderFormFields} 
-                />
+                    <Field
+                        label="Categories"
+                        name="categories"
+                        component={this.renderFormFields} 
+                    />
 
-                <Field
-                    label="Post Content"
-                    name="content"
-                    component={this.renderFormFields} 
-                />
-                <button type="submit" className="btn btn-success">Submit</button>
-                <Link  className="btn btn-danger" to="/">Cancel</Link>    
-                <div className="text-success">{this.state.success}</div>
-            </form>
+                    <Field
+                        label="Post Content"
+                        name="content"
+                        component={this.renderFormFields} 
+                    />
+                    <button type="submit" className="btn btn-success">Submit</button>
+                    <Link  className="btn btn-danger" to="/">Cancel</Link>    
+                    <div className="text-success">{this.state.success}</div>
+                </form>
+            </div>
         );
     }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({StorePosts}, dispatch);
+}
+
+function mapStateToProps({posts}) {
+    return {posts};
 }
 
 function validate(values) {
@@ -86,4 +102,9 @@ function validate(values) {
 export default reduxForm({
     validate: validate,
     form: "PostsNewForm"
-})(PostsCreate);
+})(
+    connect(mapStateToProps, mapDispatchToProps)(PostsCreate)
+);
+
+
+// export connect(mapStateToProps, mapDispatchToProps)(PostsCreate);
