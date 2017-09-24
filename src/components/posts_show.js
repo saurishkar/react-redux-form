@@ -16,6 +16,7 @@ class PostsShow extends React.Component {
     }
 
     renderPost() {
+
     	return  (
     			<ul className="list-group">
     				<li className="list-group-item"> Post Title: {this.props.post.title}</li>
@@ -28,7 +29,8 @@ class PostsShow extends React.Component {
     render() {
     	return (
     			<div className="container">
-    				 { this.props.post.id ? this.renderPost(): "" }
+    				 { this.props.post.id ? this.renderPost(): (
+    				 	this.props.status == "404" ? this.props.history.push("/notfound") :"") }
     			</div>
     	);
     }
